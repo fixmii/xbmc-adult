@@ -326,21 +326,21 @@ entitydefs2 = {
 }
 
 entitydefs3 = {
-    u'ÂÁÀÄÃÅ':  u'A',
-    u'âáàäãå':  u'a',
-    u'ÔÓÒÖÕ':   u'O',
-    u'ôóòöõğø': u'o',
-    u'ÛÚÙÜ':    u'U',
-    u'ûúùüµ':   u'u',
-    u'ÊÉÈË':    u'E',
-    u'êéèë':    u'e',
-    u'ÎÍÌÏ':    u'I',
-    u'îìíï':    u'i',
-    u'ñ':       u'n',
-    u'ß':       u'B',
-    u'÷':       u'%',
-    u'ç':       u'c',
-    u'æ':       u'ae'
+    u'Ã‚ÃÃ€Ã„ÃƒÃ…':  u'A',
+    u'Ã¢Ã¡Ã Ã¤Ã£Ã¥':  u'a',
+    u'Ã”Ã“Ã’Ã–Ã•':   u'O',
+    u'Ã´Ã³Ã²Ã¶ÃµÃ°Ã¸': u'o',
+    u'Ã›ÃšÃ™Ãœ':    u'U',
+    u'Ã»ÃºÃ¹Ã¼Âµ':   u'u',
+    u'ÃŠÃ‰ÃˆÃ‹':    u'E',
+    u'ÃªÃ©Ã¨Ã«':    u'e',
+    u'ÃÃÃŒÃ':    u'I',
+    u'Ã®Ã¬Ã­Ã¯':    u'i',
+    u'Ã±':       u'n',
+    u'ÃŸ':       u'B',
+    u'Ã·':       u'%',
+    u'Ã§':       u'c',
+    u'Ã¦':       u'ae'
 }
 
 def clean1(s): # remove &XXX;
@@ -893,7 +893,11 @@ class CCurrentList:
                 return
             data = handle.read()
             #cj.save(os.path.join(resDir, 'cookies.lwp'), ignore_discard=True)
-            cj.save(cookiePath)
+            try:
+                cj.save(cookiePath)
+            except ValueError:
+                if enable_debug:
+                    xbmc.log('Failed to save the cookie jar, expire time out of bounds')
             current_url_page = curr_url
             if enable_debug:
                 f.write(data)
